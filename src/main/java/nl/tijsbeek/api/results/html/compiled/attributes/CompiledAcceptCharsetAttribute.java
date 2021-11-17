@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public record CompiledAcceptCharsetAttribute(boolean success,
-                                             @NotNull String content)
+public record CompiledAcceptCharsetAttribute(@Contract(pure = true) boolean success,
+                                             @Contract(pure = true) @NotNull String content)
         implements CompiledHTMLAttribute<AcceptCharsetAttribute> {
     private static final Logger logger = LoggerFactory.getLogger(CompiledAcceptCharsetAttribute.class);
 
@@ -25,12 +25,5 @@ public record CompiledAcceptCharsetAttribute(boolean success,
     @Contract(value = " -> new", pure = true)
     public AcceptCharsetAttribute attribute() {
         return new AcceptCharsetAttribute();
-    }
-
-    @NotNull
-    @Override
-    @Contract(pure = true)
-    public String content() {
-        return content;
     }
 }

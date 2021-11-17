@@ -10,8 +10,8 @@ import org.slf4j.LoggerFactory;
 import java.util.Objects;
 
 public record CompiledActionAttribute(
-        boolean success,
-        @NotNull String url)
+        @Contract(pure = true) boolean success,
+        @Contract(pure = true) @NotNull String content)
         implements CompiledHTMLAttribute<ActionAttribute> {
     private static final Logger logger = LoggerFactory.getLogger(CompiledActionAttribute.class);
 
@@ -23,15 +23,9 @@ public record CompiledActionAttribute(
         this(!url.isBlank(), url);
     }
 
-    public CompiledActionAttribute(final boolean success, @NotNull final String url) {
+    public CompiledActionAttribute(final boolean success, @NotNull final String content) {
         this.success = success;
-        this.url = Objects.requireNonNull(url, "The given url cannot be null");
-    }
-
-    @Override
-    @Contract(pure = true)
-    public boolean success() {
-        return success;
+        this.content = Objects.requireNonNull(content, "The given content cannot be null");
     }
 
     @NotNull
@@ -41,10 +35,4 @@ public record CompiledActionAttribute(
         return new ActionAttribute();
     }
 
-    @NotNull
-    @Override
-    @Contract(pure = true)
-    public String content() {
-        return url;
-    }
 }

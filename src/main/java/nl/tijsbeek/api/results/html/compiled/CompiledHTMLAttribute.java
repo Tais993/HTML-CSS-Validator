@@ -4,7 +4,9 @@ import org.jetbrains.annotations.NotNull;
 
 public interface CompiledHTMLAttribute<T> extends CompiledHTML {
 
-    @NotNull T attribute();
+    @NotNull
+    T attribute();
 
-    @NotNull String content();
+    @NotNull
+    String content();
 }

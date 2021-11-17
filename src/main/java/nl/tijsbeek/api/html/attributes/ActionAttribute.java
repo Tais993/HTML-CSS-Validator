@@ -29,7 +29,7 @@ public class ActionAttribute implements HTMLAttribute<CompiledActionAttribute> {
     }
 
     private static boolean isValidUrl(@NotNull final String url) {
-        Objects.requireNonNull(url, "The given url cannot be null");
+        Objects.requireNonNull(url, "The given content cannot be null");
 
         try {
             new URL(url).toURI();

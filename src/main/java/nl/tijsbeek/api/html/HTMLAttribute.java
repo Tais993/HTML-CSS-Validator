@@ -4,7 +4,9 @@ import org.jetbrains.annotations.NotNull;
 
 public interface HTMLAttribute<T> {
 
-    @NotNull String name();
+    @NotNull
+    String name();
 
-    @NotNull T compile(@NotNull final String content);
+    @NotNull
+    T compile(@NotNull final String content);
 }

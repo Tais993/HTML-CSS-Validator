@@ -3,7 +3,6 @@ package nl.tijsbeek.api.results.html.compiled.attributes;
 import nl.tijsbeek.api.html.attributes.AcceptAttribute;
 import nl.tijsbeek.api.results.html.compiled.CompiledHTMLAttribute;
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnmodifiableView;
 import org.slf4j.Logger;
@@ -13,12 +12,12 @@ import java.util.List;
 import java.util.Objects;
 
 public record CompiledAcceptAttribute(
-        boolean success,
-        @NotNull String content,
-        @UnmodifiableView @NotNull List<String> permittedTypes,
-        @UnmodifiableView @NotNull List<String> permittedMimeTypes,
-        @UnmodifiableView @NotNull List<String> permittedFileExtensions,
-        @UnmodifiableView @NotNull List<String> invalidTypes)
+        @Contract(pure = true) boolean success,
+        @Contract(pure = true) @NotNull String content,
+        @UnmodifiableView @Contract(pure = true) @NotNull List<String> permittedTypes,
+        @UnmodifiableView @Contract(pure = true) @NotNull List<String> permittedMimeTypes,
+        @UnmodifiableView @Contract(pure = true) @NotNull List<String> permittedFileExtensions,
+        @UnmodifiableView @Contract(pure = true) @NotNull List<String> invalidTypes)
         implements CompiledHTMLAttribute<AcceptAttribute> {
     private static final Logger logger = LoggerFactory.getLogger(CompiledAcceptAttribute.class);
 
@@ -75,17 +74,5 @@ public record CompiledAcceptAttribute(
     @Contract(pure = true)
     public boolean isValidExtension(final String type) {
         return permittedFileExtensions.contains(type);
-    }
-
-    @NonNls
-    @NotNull
-    @Override
-    @Contract(pure = true)
-    public String toString() {
-        return "CompiledAcceptAttribute{" +
-                "content='" + content + '\'' +
-                ", permittedMimeTypes=" + permittedMimeTypes +
-                ", permittedFileExtensions=" + permittedFileExtensions +
-                '}';
     }
 }

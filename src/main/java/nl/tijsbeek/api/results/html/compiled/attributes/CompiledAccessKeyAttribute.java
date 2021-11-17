@@ -7,28 +7,15 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public record CompiledAccessKeyAttribute(boolean success,
-                                         @NotNull String content)
+public record CompiledAccessKeyAttribute(@Contract(pure = true) boolean success,
+                                         @Contract(pure = true) @NotNull String content)
         implements CompiledHTMLAttribute<AccessKeyAttribute> {
     private static final Logger logger = LoggerFactory.getLogger(CompiledAccessKeyAttribute.class);
-
-    @Override
-    @Contract(pure = true)
-    public boolean success() {
-        return success;
-    }
 
     @NotNull
     @Override
     @Contract(value = " -> new", pure = true)
     public AccessKeyAttribute attribute() {
         return new AccessKeyAttribute();
-    }
-
-    @NotNull
-    @Override
-    @Contract(pure = true)
-    public String content() {
-        return content;
     }
 }
