@@ -25,11 +25,7 @@ public class ActionAttribute implements HTMLAttribute<CompiledActionAttribute> {
     public @NotNull CompiledActionAttribute compile(@NotNull final String content) {
         Objects.requireNonNull(content, "The given content cannot be null");
 
-        if (isValidUrl(content)) {
-            return new CompiledActionAttribute(content);
-        }
-
-        return new CompiledActionAttribute(false, content);
+        return new CompiledActionAttribute(isValidUrl(content), content);
     }
 
     private static boolean isValidUrl(@NotNull final String url) {
