@@ -1,4 +1,4 @@
-package nl.tijsbeek.api.results.html.compiled.errors;
+package nl.tijsbeek.api.results.html.compiled.linter.errors;
 
 import nl.tijsbeek.api.html.HTMLAttribute;
 import org.jetbrains.annotations.Contract;
@@ -10,13 +10,13 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class HTMLAttributeError<T> extends HTMLError {
+public class HTMLAttributeError<A extends HTMLAttribute<?>> extends HTMLError {
     private static final Logger logger = LoggerFactory.getLogger(HTMLAttributeError.class);
 
-    private final HTMLAttribute<T> attribute;
+    private final A attribute;
     private final String message;
 
-    public HTMLAttributeError(@NotNull final HTMLAttribute<T> attribute, final @Nullable String message) {
+    public HTMLAttributeError(@NotNull final A attribute, final @Nullable String message) {
         super(message);
 
         Objects.requireNonNull(attribute, "The given attribute cannot be null");
@@ -25,7 +25,7 @@ public class HTMLAttributeError<T> extends HTMLError {
         this.message = message;
     }
 
-    public @NotNull HTMLAttribute<T> getAttribute() {
+    public @NotNull A getAttribute() {
         return attribute;
     }
 

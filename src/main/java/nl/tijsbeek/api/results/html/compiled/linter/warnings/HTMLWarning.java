@@ -1,18 +1,19 @@
-package nl.tijsbeek.api.results.html.compiled.errors;
+package nl.tijsbeek.api.results.html.compiled.linter.warnings;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class HTMLError {
-    private static final Logger logger = LoggerFactory.getLogger(HTMLError.class);
+public class HTMLWarning {
+    private static final Logger logger = LoggerFactory.getLogger(HTMLWarning.class);
 
     private final String message;
 
     @Contract(pure = true)
-    public HTMLError(@Nullable final String message) {
+    public HTMLWarning(@Nullable final String message) {
         this.message = message;
     }
 
@@ -22,10 +23,11 @@ public class HTMLError {
     }
 
     @NonNls
+    @NotNull
     @Override
     @Contract(pure = true)
     public String toString() {
-        return "ErrorHTML{" +
+        return "HTMLWarning{" +
                 "message='" + message + '\'' +
                 '}';
     }
