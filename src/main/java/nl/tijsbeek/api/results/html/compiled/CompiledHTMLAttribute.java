@@ -1,4 +1,10 @@
 package nl.tijsbeek.api.results.html.compiled;
 
-public interface CompiledHTMLAttribute {
+import org.jetbrains.annotations.NotNull;
+
+public interface CompiledHTMLAttribute<T> extends CompiledHTML {
+
+    @NotNull T attribute();
+
+    @NotNull String content();
 }

@@ -1,8 +1,10 @@
 package nl.tijsbeek.api.html;
 
-public interface HTMLAttribute {
+import org.jetbrains.annotations.NotNull;
 
-    String name();
+public interface HTMLAttribute<T> {
 
-    boolean isValidContent(String content);
+    @NotNull String name();
+
+    @NotNull T compile(@NotNull final String content);
 }
