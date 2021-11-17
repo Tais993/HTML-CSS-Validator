@@ -10,13 +10,13 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class ErrorHTMLAttribute<T> extends ErrorHTML {
-    private static final Logger logger = LoggerFactory.getLogger(ErrorHTMLAttribute.class);
+public class HTMLAttributeError<T> extends HTMLError {
+    private static final Logger logger = LoggerFactory.getLogger(HTMLAttributeError.class);
 
     private final HTMLAttribute<T> attribute;
     private final String message;
 
-    public ErrorHTMLAttribute(@NotNull final HTMLAttribute<T> attribute, final @Nullable String message) {
+    public HTMLAttributeError(@NotNull final HTMLAttribute<T> attribute, final @Nullable String message) {
         super(message);
 
         Objects.requireNonNull(attribute, "The given attribute cannot be null");
