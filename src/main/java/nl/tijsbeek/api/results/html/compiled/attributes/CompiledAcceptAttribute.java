@@ -28,8 +28,8 @@ public final class CompiledAcceptAttribute
     private final List<String> permittedFileExtensions;
     private final List<String> invalidTypes;
 
-    private List<AcceptAttributeError> errors;
-    private List<HTMLAttributeWarning<AcceptAttribute>> warnings;
+    private List<AcceptAttributeError> errors = null;
+    private final List<HTMLAttributeWarning<AcceptAttribute>> warnings;
 
 
     public CompiledAcceptAttribute(@NotNull final String content,
@@ -120,7 +120,7 @@ public final class CompiledAcceptAttribute
     @UnmodifiableView
     @Contract(pure = true)
     public List<HTMLAttributeWarning<AcceptAttribute>> warnings() {
-        return Collections.unmodifiableList(warnings);
+        return warnings;
     }
 
     @Override
@@ -171,8 +171,7 @@ public final class CompiledAcceptAttribute
         if (!permittedTypes.equals(that.permittedTypes)) return false;
         if (!permittedMimeTypes.equals(that.permittedMimeTypes)) return false;
         if (!permittedFileExtensions.equals(that.permittedFileExtensions)) return false;
-        if (!invalidTypes.equals(that.invalidTypes)) return false;
-        return Objects.equals(errors, that.errors);
+        return invalidTypes.equals(that.invalidTypes);
     }
 
     @Override

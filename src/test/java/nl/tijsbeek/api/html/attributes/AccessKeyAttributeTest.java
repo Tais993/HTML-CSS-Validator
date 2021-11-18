@@ -1,6 +1,7 @@
 package nl.tijsbeek.api.html.attributes;
 
 import nl.tijsbeek.api.results.html.compiled.attributes.CompiledAccessKeyAttribute;
+import org.jetbrains.annotations.NonNls;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,14 +32,14 @@ class AccessKeyAttributeTest {
     public void testAccessKeyAttribute() {
         AccessKeyAttribute accessKeyAttribute = new AccessKeyAttribute();
 
-        validArguments.forEach(validArgument -> {
+        validArguments.forEach((@NonNls String validArgument) -> {
             CompiledAccessKeyAttribute validCompile = accessKeyAttribute.compile(validArgument);
 
             assertTrue(validCompile.hasSuccessFullyCompiled(),
                     () -> "Valid argument is seen as invalid, " + validArgument);
         });
 
-        invalidArguments.forEach(invalidArgument -> {
+        invalidArguments.forEach((@NonNls String invalidArgument) -> {
             CompiledAccessKeyAttribute invalidCompile = accessKeyAttribute.compile(invalidArgument);
 
             assertFalse(invalidCompile.hasSuccessFullyCompiled(),

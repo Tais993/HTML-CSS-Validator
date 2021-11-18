@@ -1,5 +1,6 @@
 package nl.tijsbeek;
 
+import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
@@ -9,7 +10,7 @@ import java.util.stream.Collectors;
 public enum Util {
     ;
 
-    public static <T> String listToString(@NotNull final Collection<T> list, final String separator) {
+    public static <T> String listToString(@NotNull final Collection<T> list, final @NonNls String separator) {
         Objects.requireNonNull(list, "The given list cannot be null");
 
         return list.stream()

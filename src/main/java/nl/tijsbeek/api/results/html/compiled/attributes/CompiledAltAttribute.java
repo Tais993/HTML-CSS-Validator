@@ -77,10 +77,10 @@ public final class CompiledAltAttribute
     @Contract(value = "null -> false", pure = true)
     public boolean equals(final Object obj) {
         if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
+        if (obj == null || obj.getClass() != getClass()) return false;
         var that = (CompiledAltAttribute) obj;
-        return this.success == that.success &&
-                Objects.equals(this.content, that.content);
+        return success == that.success &&
+                Objects.equals(content, that.content);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package nl.tijsbeek.api.html.attributes;
 
 import nl.tijsbeek.api.results.html.compiled.attributes.CompiledAsyncAttribute;
+import org.jetbrains.annotations.NonNls;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,14 +30,14 @@ class AsyncAttributeTest {
     public void testAsyncAttribute() {
         AsyncAttribute asyncAttribute = new AsyncAttribute();
 
-        validArguments.forEach(validArgument -> {
+        validArguments.forEach((@NonNls String validArgument) -> {
             CompiledAsyncAttribute validCompile = asyncAttribute.compile(validArgument);
 
             assertTrue(validCompile.hasSuccessFullyCompiled(),
                     () -> "Valid argument is seen as invalid, " + validArgument);
         });
 
-        invalidArguments.forEach(invalidArgument -> {
+        invalidArguments.forEach((@NonNls String invalidArgument) -> {
             CompiledAsyncAttribute invalidCompile = asyncAttribute.compile(invalidArgument);
 
             assertTrue(invalidCompile.hasWarnings(),

@@ -16,7 +16,7 @@ public class HTMLWarning {
     @Contract(pure = true)
     public HTMLWarning(@Nullable final String value, @Nullable final String message) {
         this.value = value;
-        this.errorMessage = message;
+        errorMessage = message;
     }
 
     @Nullable

@@ -1,5 +1,8 @@
 package nl.tijsbeek.api.html.attributes;
 
-class AcceptCharsetAttributeTest {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+class AcceptCharsetAttributeTest {
+    private static final Logger logger = LoggerFactory.getLogger(AcceptCharsetAttributeTest.class);
 }

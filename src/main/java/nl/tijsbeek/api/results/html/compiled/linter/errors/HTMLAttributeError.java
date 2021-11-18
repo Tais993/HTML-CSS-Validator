@@ -22,7 +22,7 @@ public class HTMLAttributeError<A extends HTMLAttribute<?>> extends HTMLError {
         Objects.requireNonNull(attribute, "The given attribute cannot be null");
 
         this.attribute = attribute;
-        this.message = errorMessage;
+        message = errorMessage;
     }
 
     public @NotNull A getAttribute() {

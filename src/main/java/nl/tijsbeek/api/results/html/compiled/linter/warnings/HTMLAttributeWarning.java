@@ -23,7 +23,7 @@ public class HTMLAttributeWarning<A extends HTMLAttribute<?>> extends HTMLWarnin
         Objects.requireNonNull(attribute, "The given attribute cannot be null");
 
         this.attribute = attribute;
-        this.message = errorMessage;
+        message = errorMessage;
     }
 
     public @NotNull A getAttribute() {

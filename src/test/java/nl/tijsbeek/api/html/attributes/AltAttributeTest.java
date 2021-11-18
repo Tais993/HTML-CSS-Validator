@@ -1,6 +1,7 @@
 package nl.tijsbeek.api.html.attributes;
 
 import nl.tijsbeek.api.results.html.compiled.attributes.CompiledAltAttribute;
+import org.jetbrains.annotations.NonNls;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +23,7 @@ class AltAttributeTest {
     public void testAltAttribute() {
         AltAttribute altAttribute = new AltAttribute();
 
-        validArguments.forEach(validArgument -> {
+        validArguments.forEach((@NonNls String validArgument) -> {
             CompiledAltAttribute validCompile = altAttribute.compile(validArgument);
 
             assertTrue(validCompile.hasSuccessFullyCompiled(),

@@ -29,12 +29,12 @@ public final class CompiledActionAttribute
         this.success = success;
         this.content = Objects.requireNonNull(content, "The given content cannot be null");
 
-        this.errors = Collections.emptyList();
+        errors = Collections.emptyList();
 
         if (success) {
-            this.warnings = Collections.emptyList();
+            warnings = Collections.emptyList();
         } else {
-            this.warnings = Collections.singletonList(new ActionAttributeWarning(content));
+            warnings = Collections.singletonList(new ActionAttributeWarning(content));
         }
     }
 
@@ -87,10 +87,10 @@ public final class CompiledActionAttribute
     @Contract(value = "null -> false", pure = true)
     public boolean equals(final Object obj) {
         if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
+        if (obj == null || obj.getClass() != getClass()) return false;
         var that = (CompiledActionAttribute) obj;
-        return this.success == that.success &&
-                Objects.equals(this.content, that.content);
+        return success == that.success &&
+                Objects.equals(content, that.content);
     }
 
     @Override

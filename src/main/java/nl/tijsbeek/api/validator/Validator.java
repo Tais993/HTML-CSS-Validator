@@ -1,6 +1,8 @@
 package nl.tijsbeek.api.validator;
 
-import nl.tijsbeek.api.results.html.compiler.HTMLCompiler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Validator {
+    private static final Logger logger = LoggerFactory.getLogger(Validator.class);
 }

@@ -15,7 +15,7 @@ public class HTMLError {
     @Contract(pure = true)
     public HTMLError(@Nullable final String value, @Nullable final String message) {
         this.value = value;
-        this.errorMessage = message;
+        errorMessage = message;
     }
 
     @Nullable
