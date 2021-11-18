@@ -31,6 +31,11 @@ public class AcceptAttribute implements HTMLAttribute<CompiledAcceptAttribute> {
         return ACCEPT_ATTRIBUTE_NAME;
     }
 
+    @Override
+    public boolean requiresValue() {
+        return true;
+    }
+
     @NotNull
     @Override
     public CompiledAcceptAttribute compile(final @NotNull String content) {

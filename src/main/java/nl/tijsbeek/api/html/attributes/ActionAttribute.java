@@ -22,6 +22,11 @@ public class ActionAttribute implements HTMLAttribute<CompiledActionAttribute> {
     }
 
     @Override
+    public boolean requiresValue() {
+        return true;
+    }
+
+    @Override
     public @NotNull CompiledActionAttribute compile(@NotNull final String content) {
         Objects.requireNonNull(content, "The given content cannot be null");
 

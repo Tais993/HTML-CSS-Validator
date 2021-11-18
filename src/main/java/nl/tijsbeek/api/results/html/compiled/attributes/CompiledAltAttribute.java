@@ -68,7 +68,7 @@ public final class CompiledAltAttribute
     }
 
     @Contract(pure = true)
-    public boolean success() {return success;}
+    public boolean hasSuccessFullyCompiled() {return success;}
 
     @Contract(pure = true)
     public @NotNull String content() {return content;}

@@ -12,6 +12,6 @@ public class AcceptAttributeError extends HTMLAttributeError<AcceptAttribute> {
     private static final Logger logger = LoggerFactory.getLogger(AcceptAttributeError.class);
 
     public AcceptAttributeError(@NotNull final String type) {
-        super(new AcceptAttribute(), Objects.requireNonNull(type) + "  isn't a valid MIME or file extension");
+        super(new AcceptAttribute(), Objects.requireNonNull(type), "Invalid MIME or file extension");
     }
 }

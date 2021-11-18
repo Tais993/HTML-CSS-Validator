@@ -19,6 +19,11 @@ public class AcceptCharsetAttribute implements HTMLAttribute<CompiledAcceptChars
         return ACCEPT_CHARSET_ATTRIBUTE_NAME;
     }
 
+    @Override
+    public boolean requiresValue() {
+        return true;
+    }
+
     @NotNull
     @Override
     public CompiledAcceptCharsetAttribute compile(final @NotNull String content) {

@@ -24,6 +24,11 @@ public class AccessKeyAttribute implements HTMLAttribute<CompiledAccessKeyAttrib
         return ACCESSKEY_ATTRIBUTE_NAME;
     }
 
+    @Override
+    public boolean requiresValue() {
+        return true;
+    }
+
     @NotNull
     @Override
     public CompiledAccessKeyAttribute compile(@NotNull final String content) {

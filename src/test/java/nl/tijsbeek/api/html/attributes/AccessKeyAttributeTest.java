@@ -34,14 +34,14 @@ class AccessKeyAttributeTest {
         validArguments.forEach(validArgument -> {
             CompiledAccessKeyAttribute validCompile = accessKeyAttribute.compile(validArgument);
 
-            assertTrue(validCompile.success(),
+            assertTrue(validCompile.hasSuccessFullyCompiled(),
                     () -> "Valid argument is seen as invalid, " + validArgument);
         });
 
         invalidArguments.forEach(invalidArgument -> {
             CompiledAccessKeyAttribute invalidCompile = accessKeyAttribute.compile(invalidArgument);
 
-            assertFalse(invalidCompile.success(),
+            assertFalse(invalidCompile.hasSuccessFullyCompiled(),
                     () -> "Invalid argument is seen as valid, " + invalidArgument);
         });
     }

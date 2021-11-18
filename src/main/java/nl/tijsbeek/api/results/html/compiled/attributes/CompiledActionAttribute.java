@@ -76,7 +76,7 @@ public final class CompiledActionAttribute
 
     @Override
     @Contract(pure = true)
-    public boolean success() {return success;}
+    public boolean hasSuccessFullyCompiled() {return success;}
 
     @NotNull
     @Override

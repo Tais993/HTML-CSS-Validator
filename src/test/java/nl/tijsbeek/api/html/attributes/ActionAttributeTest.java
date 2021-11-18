@@ -29,14 +29,14 @@ class ActionAttributeTest {
         validArguments.forEach(validArgument -> {
             CompiledActionAttribute validCompile = actionAttribute.compile(validArgument);
 
-            assertTrue(validCompile.success(),
+            assertTrue(validCompile.hasSuccessFullyCompiled(),
                     () -> "Valid argument is seen as invalid, " + validArgument);
         });
 
         invalidArguments.forEach(invalidArgument -> {
             CompiledActionAttribute invalidCompile = actionAttribute.compile(invalidArgument);
 
-            assertFalse(invalidCompile.success(),
+            assertFalse(invalidCompile.hasSuccessFullyCompiled(),
                     () -> "Invalid argument is seen as valid, " + invalidArgument);
         });
     }

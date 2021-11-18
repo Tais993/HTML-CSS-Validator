@@ -131,7 +131,7 @@ public final class CompiledAcceptAttribute
 
 
     @Contract(pure = true)
-    public boolean success() {return success;}
+    public boolean hasSuccessFullyCompiled() {return success;}
 
     @NotNull
     @Contract(pure = true)

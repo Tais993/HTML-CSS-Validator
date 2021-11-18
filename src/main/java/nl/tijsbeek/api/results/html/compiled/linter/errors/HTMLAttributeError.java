@@ -16,13 +16,13 @@ public class HTMLAttributeError<A extends HTMLAttribute<?>> extends HTMLError {
     private final A attribute;
     private final String message;
 
-    public HTMLAttributeError(@NotNull final A attribute, final @Nullable String message) {
-        super(message);
+    public HTMLAttributeError(@NotNull final A attribute, final @Nullable String value, final @Nullable String errorMessage) {
+        super(value, errorMessage);
 
         Objects.requireNonNull(attribute, "The given attribute cannot be null");
 
         this.attribute = attribute;
-        this.message = message;
+        this.message = errorMessage;
     }
 
     public @NotNull A getAttribute() {

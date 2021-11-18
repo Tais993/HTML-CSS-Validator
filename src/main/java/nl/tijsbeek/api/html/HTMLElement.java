@@ -6,7 +6,7 @@ public interface HTMLElement {
 
     String name();
 
-    List<HTMLAttribute> permittedAttributes();
+    List<HTMLAttribute<?>> permittedAttributes();
 
     List<HTMLElement> permittedElements();
 }

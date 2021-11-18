@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface CompiledHTML<E extends HTMLError, W extends HTMLWarning> {
 
-    boolean success();
+    boolean hasSuccessFullyCompiled();
 
     @NotNull
     @UnmodifiableView

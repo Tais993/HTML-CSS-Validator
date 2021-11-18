@@ -19,6 +19,11 @@ public class AltAttribute implements HTMLAttribute<CompiledAltAttribute> {
         return ALT_ATTRIBUTE_NAME;
     }
 
+    @Override
+    public boolean requiresValue() {
+        return true;
+    }
+
     @NotNull
     @Override
     public CompiledAltAttribute compile(@NotNull final String content) {

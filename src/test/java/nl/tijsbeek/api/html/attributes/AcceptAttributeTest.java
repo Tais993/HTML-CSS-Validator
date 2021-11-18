@@ -34,14 +34,14 @@ class AcceptAttributeTest {
                 listToString(validArguments, ","));
 
 
-        Assertions.assertTrue(validAcceptAttribute.success(), "valid attributes found to be invalid.");
+        Assertions.assertTrue(validAcceptAttribute.hasSuccessFullyCompiled(), "valid attributes found to be invalid.");
         Assertions.assertIterableEquals(validArguments, validAcceptAttribute.permittedTypes());
 
 
         CompiledAcceptAttribute invalidAcceptAttribute = acceptAttribute.compile(
                 listToString(invalidArguments, ","));
 
-        Assertions.assertFalse(invalidAcceptAttribute.success(), "invalid attributes found to be valid.");
+        Assertions.assertFalse(invalidAcceptAttribute.hasSuccessFullyCompiled(), "invalid attributes found to be valid.");
         Assertions.assertIterableEquals(invalidArguments, invalidAcceptAttribute.invalidTypes());
     }
 }

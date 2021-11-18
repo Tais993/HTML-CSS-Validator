@@ -9,16 +9,23 @@ import org.slf4j.LoggerFactory;
 public class HTMLError {
     private static final Logger logger = LoggerFactory.getLogger(HTMLError.class);
 
-    private final String message;
+    private final String value;
+    private final String errorMessage;
 
     @Contract(pure = true)
-    public HTMLError(@Nullable final String message) {
-        this.message = message;
+    public HTMLError(@Nullable final String value, @Nullable final String message) {
+        this.value = value;
+        this.errorMessage = message;
     }
 
     @Nullable
-    public String getMessage() {
-        return message;
+    public String getValue() {
+        return value;
+    }
+
+    @Nullable
+    public String getErrorMessage() {
+        return errorMessage;
     }
 
     @NonNls
@@ -26,7 +33,7 @@ public class HTMLError {
     @Contract(pure = true)
     public String toString() {
         return "ErrorHTML{" +
-                "message='" + message + '\'' +
+                "message='" + errorMessage + '\'' +
                 '}';
     }
 }

@@ -25,7 +25,7 @@ class AltAttributeTest {
         validArguments.forEach(validArgument -> {
             CompiledAltAttribute validCompile = altAttribute.compile(validArgument);
 
-            assertTrue(validCompile.success(),
+            assertTrue(validCompile.hasSuccessFullyCompiled(),
                     () -> "Valid argument is seen as invalid, " + validArgument);
         });
     }

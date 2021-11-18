@@ -39,7 +39,7 @@ public final class CompiledAcceptCharsetAttribute
     }
 
     @Contract(pure = true)
-    public boolean success() {return success;}
+    public boolean hasSuccessFullyCompiled() {return success;}
 
     @NotNull
     @Contract(pure = true)

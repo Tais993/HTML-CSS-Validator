@@ -10,6 +10,6 @@ public class ActionAttributeWarning extends HTMLAttributeWarning<ActionAttribute
     private static final Logger logger = LoggerFactory.getLogger(ActionAttributeWarning.class);
 
     public ActionAttributeWarning(@Nullable final String url) {
-        super(new ActionAttribute(), url + " isn't a valid URL");
+        super(new ActionAttribute(), url, "Invalid URL");
     }
 }
