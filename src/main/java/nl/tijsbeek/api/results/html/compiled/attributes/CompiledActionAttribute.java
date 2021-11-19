@@ -4,13 +4,11 @@ import nl.tijsbeek.api.html.attributes.ActionAttribute;
 import nl.tijsbeek.api.results.html.compiled.CompiledHTMLAttribute;
 import nl.tijsbeek.api.results.html.compiled.linter.errors.HTMLAttributeError;
 import nl.tijsbeek.api.results.html.compiled.linter.warnings.attributes.ActionAttributeWarning;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.UnmodifiableView;
+import org.jetbrains.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -20,13 +18,15 @@ public final class CompiledActionAttribute
         ActionAttributeWarning> {
     private static final Logger logger = LoggerFactory.getLogger(CompiledActionAttribute.class);
     private final boolean success;
-    private final @NotNull String content;
+    private final String content;
+    private final URL url;
 
     private final List<HTMLAttributeError<ActionAttribute>> errors;
     private final List<ActionAttributeWarning> warnings;
 
-    public CompiledActionAttribute(final boolean success, @NotNull final String content) {
+    public CompiledActionAttribute(final boolean success, @NotNull final String content, @Nullable URL url) {
         this.success = success;
+        this.url = url;
         this.content = Objects.requireNonNull(content, "The given content cannot be null");
 
         errors = Collections.emptyList();
@@ -37,6 +37,7 @@ public final class CompiledActionAttribute
             warnings = Collections.singletonList(new ActionAttributeWarning(content));
         }
     }
+
 
     @NotNull
     @Override
@@ -76,12 +77,24 @@ public final class CompiledActionAttribute
 
     @Override
     @Contract(pure = true)
-    public boolean hasSuccessFullyCompiled() {return success;}
+    public boolean hasSuccessFullyCompiled() {
+        return success;
+    }
 
     @NotNull
     @Override
     @Contract(pure = true)
-    public String content() {return content;}
+    public String contentAsString() {
+        throwIfNoSuccess();
+        return content;
+    }
+
+    @NotNull
+    @Contract(pure = true)
+    public URL getUrl() {
+        throwIfNoSuccess();
+        return url;
+    }
 
     @Override
     @Contract(value = "null -> false", pure = true)

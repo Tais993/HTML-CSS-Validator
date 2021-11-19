@@ -39,7 +39,7 @@ public class CompiledAsyncAttribute extends CompiledBooleanAttribute<AsyncAttrib
 
     @Nullable
     @Override
-    public String content() {
+    public String contentAsString() {
         return content;
     }
 

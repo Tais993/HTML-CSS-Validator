@@ -71,7 +71,7 @@ public final class CompiledAltAttribute
     public boolean hasSuccessFullyCompiled() {return success;}
 
     @Contract(pure = true)
-    public @NotNull String content() {return content;}
+    public @NotNull String contentAsString() {return content;}
 
     @Override
     @Contract(value = "null -> false", pure = true)

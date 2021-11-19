@@ -43,7 +43,9 @@ public final class CompiledAcceptCharsetAttribute
 
     @NotNull
     @Contract(pure = true)
-    public String content() {return content;}
+    public String contentAsString() {
+        return content;
+    }
 
 
     @Override

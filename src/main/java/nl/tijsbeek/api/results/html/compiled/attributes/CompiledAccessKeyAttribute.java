@@ -84,8 +84,9 @@ public final class CompiledAccessKeyAttribute
     @Contract(pure = true)
     public boolean hasSuccessFullyCompiled() {return success;}
 
+    @NotNull
     @Contract(pure = true)
-    public @NotNull String content() {return content;}
+    public String contentAsString() {return content;}
 
     @Override
     @Contract(value = "null -> false", pure = true)

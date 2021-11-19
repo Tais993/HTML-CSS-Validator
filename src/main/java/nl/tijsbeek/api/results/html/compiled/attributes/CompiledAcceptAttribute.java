@@ -92,6 +92,7 @@ public final class CompiledAcceptAttribute
 
     @NotNull
     @Override
+    @UnmodifiableView
     @Contract(pure = true)
     public List<AcceptAttributeError> errors() {
         return Collections.unmodifiableList(loadErrors());
@@ -131,31 +132,43 @@ public final class CompiledAcceptAttribute
 
 
     @Contract(pure = true)
-    public boolean hasSuccessFullyCompiled() {return success;}
+    public boolean hasSuccessFullyCompiled() {
+        return success;
+    }
 
     @NotNull
     @Contract(pure = true)
-    public String content() {return content;}
-
-    @NotNull
-    @UnmodifiableView
-    @Contract(pure = true)
-    public List<String> permittedTypes() {return Collections.unmodifiableList(permittedTypes);}
-
-    @NotNull
-    @UnmodifiableView
-    @Contract(pure = true)
-    public List<String> permittedMimeTypes() {return Collections.unmodifiableList(permittedMimeTypes);}
+    public String contentAsString() {
+        return content;
+    }
 
     @NotNull
     @UnmodifiableView
     @Contract(pure = true)
-    public List<String> permittedFileExtensions() {return Collections.unmodifiableList(permittedFileExtensions);}
+    public List<String> permittedTypes() {
+        return Collections.unmodifiableList(permittedTypes);
+    }
 
     @NotNull
     @UnmodifiableView
     @Contract(pure = true)
-    public List<String> invalidTypes() {return Collections.unmodifiableList(invalidTypes);}
+    public List<String> permittedMimeTypes() {
+        return Collections.unmodifiableList(permittedMimeTypes);
+    }
+
+    @NotNull
+    @UnmodifiableView
+    @Contract(pure = true)
+    public List<String> permittedFileExtensions() {
+        return Collections.unmodifiableList(permittedFileExtensions);
+    }
+
+    @NotNull
+    @UnmodifiableView
+    @Contract(pure = true)
+    public List<String> invalidTypes() {
+        return Collections.unmodifiableList(invalidTypes);
+    }
 
 
     @Override
