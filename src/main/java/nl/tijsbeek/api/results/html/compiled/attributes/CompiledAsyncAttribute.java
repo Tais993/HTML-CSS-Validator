@@ -11,13 +11,13 @@ import org.slf4j.LoggerFactory;
 public class CompiledAsyncAttribute extends CompiledBooleanAttribute<AsyncAttribute> {
     private static final Logger logger = LoggerFactory.getLogger(CompiledAsyncAttribute.class);
 
-    private static final AsyncAttribute asyncAttribute = new AsyncAttribute();
+    private static final AsyncAttribute ASYNC_ATTRIBUTE_INSTANCE = new AsyncAttribute();
 
     private final boolean isAsync;
     private final String content;
 
     public CompiledAsyncAttribute(final boolean isAsync, @Nullable final String content) {
-        super(asyncAttribute, isAsync, content);
+        super(ASYNC_ATTRIBUTE_INSTANCE, isAsync, content);
 
         this.isAsync = isAsync;
         this.content = content;
@@ -30,7 +30,7 @@ public class CompiledAsyncAttribute extends CompiledBooleanAttribute<AsyncAttrib
 
     @Override
     public @NotNull AsyncAttribute attribute() {
-        return asyncAttribute;
+        return ASYNC_ATTRIBUTE_INSTANCE;
     }
 
     public boolean isAsync() {

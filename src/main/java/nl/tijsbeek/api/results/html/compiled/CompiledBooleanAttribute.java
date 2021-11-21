@@ -34,21 +34,11 @@ public abstract class CompiledBooleanAttribute<A extends HTMLAttribute<?>>
         return errors;
     }
 
-    @Override
-    public boolean hasErrors() {
-        return !errors.isEmpty();
-    }
-
     @NotNull
     @Override
     @UnmodifiableView
     public List<BooleanAttributeWarning<A>> warnings() {
         return warnings;
-    }
-
-    @Override
-    public boolean hasWarnings() {
-        return !warnings.isEmpty();
     }
 
     @NonNls
