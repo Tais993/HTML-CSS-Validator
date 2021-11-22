@@ -4,7 +4,7 @@ import nl.tijsbeek.api.html.attributes.AutoCapitalize;
 import nl.tijsbeek.api.html.attributes.AutoCapitalizeAttribute;
 import nl.tijsbeek.api.results.html.compiled.CompiledHTMLAttribute;
 import nl.tijsbeek.api.results.html.compiled.linter.errors.attributes.InvalidEnumValueAttributeError;
-import nl.tijsbeek.api.results.html.compiled.linter.warnings.HTMLAttributeWarning;
+import nl.tijsbeek.api.results.html.compiled.linter.warnings.attributes.EmptyAttributeWarning;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class CompiledAutoCapitalizeAttribute implements CompiledHTMLAttribute<AutoCapitalizeAttribute,
-        InvalidEnumValueAttributeError<AutoCapitalizeAttribute>, HTMLAttributeWarning<AutoCapitalizeAttribute>> {
+        InvalidEnumValueAttributeError<AutoCapitalizeAttribute>, EmptyAttributeWarning<AutoCapitalizeAttribute>> {
     private static final Logger logger = LoggerFactory.getLogger(CompiledAutoCapitalizeAttribute.class);
 
     private static final AutoCapitalizeAttribute AUTO_CAPITALIZE_ATTRIBUTE_INSTANCE = new AutoCapitalizeAttribute();
@@ -26,7 +26,7 @@ public class CompiledAutoCapitalizeAttribute implements CompiledHTMLAttribute<Au
     private final boolean success;
 
     private final List<InvalidEnumValueAttributeError<AutoCapitalizeAttribute>> errors;
-    private final List<HTMLAttributeWarning<AutoCapitalizeAttribute>> warnings;
+    private final List<EmptyAttributeWarning<AutoCapitalizeAttribute>> warnings;
 
     @Contract(pure = true)
     public CompiledAutoCapitalizeAttribute(@Nullable AutoCapitalize autoCapitalize, @NotNull String content) {
@@ -43,8 +43,7 @@ public class CompiledAutoCapitalizeAttribute implements CompiledHTMLAttribute<Au
         }
 
         if (content.isBlank()) {
-            // TODO: add warning
-            warnings = Collections.emptyList();
+            warnings = Collections.singletonList(new EmptyAttributeWarning<>(AUTO_CAPITALIZE_ATTRIBUTE_INSTANCE));
         } else {
             warnings = Collections.emptyList();
         }
@@ -65,7 +64,7 @@ public class CompiledAutoCapitalizeAttribute implements CompiledHTMLAttribute<Au
     @NotNull
     @Override
     @UnmodifiableView
-    public List<HTMLAttributeWarning<AutoCapitalizeAttribute>> warnings() {
+    public List<EmptyAttributeWarning<AutoCapitalizeAttribute>> warnings() {
         return warnings;
     }
 
