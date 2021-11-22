@@ -47,12 +47,6 @@ public final class CompiledAltAttribute
         return errors;
     }
 
-    @Override
-    @Contract(pure = true)
-    public boolean hasErrors() {
-        return !errors.isEmpty();
-    }
-
     @NotNull
     @Override
     @UnmodifiableView
@@ -61,11 +55,6 @@ public final class CompiledAltAttribute
         return warnings;
     }
 
-    @Override
-    @Contract(pure = true)
-    public boolean hasWarnings() {
-        return !warnings.isEmpty();
-    }
 
     @Contract(pure = true)
     public boolean hasSuccessFullyCompiled() {return success;}
@@ -78,7 +67,7 @@ public final class CompiledAltAttribute
     public boolean equals(final Object obj) {
         if (obj == this) return true;
         if (obj == null || obj.getClass() != getClass()) return false;
-        var that = (CompiledAltAttribute) obj;
+        CompiledAltAttribute that = (CompiledAltAttribute) obj;
         return success == that.success &&
                 Objects.equals(content, that.content);
     }

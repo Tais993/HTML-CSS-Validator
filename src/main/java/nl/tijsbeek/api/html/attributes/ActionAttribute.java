@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Objects;
+import java.util.Optional;
 
 public class ActionAttribute implements HTMLAttribute<CompiledActionAttribute> {
     private static final Logger logger = LoggerFactory.getLogger(ActionAttribute.class);
@@ -30,18 +31,20 @@ public class ActionAttribute implements HTMLAttribute<CompiledActionAttribute> {
     public @NotNull CompiledActionAttribute compile(@NotNull final String content) {
         Objects.requireNonNull(content, "The given content cannot be null");
 
-        return new CompiledActionAttribute(isValidUrl(content), content);
+        Optional<URL> optional = toURL(content);
+
+        return new CompiledActionAttribute(optional.isPresent(), content, optional.orElse(null));
     }
 
-    private static boolean isValidUrl(@NotNull final String url) {
+    private static Optional<URL> toURL(@NotNull final String url) {
         Objects.requireNonNull(url, "The given content cannot be null");
 
         try {
             new URL(url).toURI();
-        } catch (URISyntaxException | MalformedURLException e) {
-            return false;
+            return Optional.of(new URL(url));
+        } catch (URISyntaxException | MalformedURLException ignored) {
         }
 
-        return true;
+        return Optional.empty();
     }
 }

@@ -55,12 +55,6 @@ public final class CompiledActionAttribute
         return errors;
     }
 
-    @Override
-    @Contract(pure = true)
-    public boolean hasErrors() {
-        return !errors.isEmpty();
-    }
-
     @NotNull
     @Override
     @UnmodifiableView
@@ -69,11 +63,6 @@ public final class CompiledActionAttribute
         return warnings;
     }
 
-    @Override
-    @Contract(pure = true)
-    public boolean hasWarnings() {
-        return !warnings.isEmpty();
-    }
 
     @Override
     @Contract(pure = true)
@@ -101,7 +90,7 @@ public final class CompiledActionAttribute
     public boolean equals(final Object obj) {
         if (obj == this) return true;
         if (obj == null || obj.getClass() != getClass()) return false;
-        var that = (CompiledActionAttribute) obj;
+        CompiledActionAttribute that = (CompiledActionAttribute) obj;
         return success == that.success &&
                 Objects.equals(content, that.content);
     }

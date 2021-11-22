@@ -21,4 +21,15 @@ public interface CompiledHTMLAttribute<A extends HTMLAttribute<?>,
 
     @Nullable
     String contentAsString();
+
+
+    @Override
+    default boolean hasWarnings() {
+        return !warnings().isEmpty();
+    }
+
+    @Override
+    default boolean hasErrors() {
+        return !errors().isEmpty();
+    }
 }

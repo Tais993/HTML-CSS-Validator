@@ -8,7 +8,6 @@ import org.jetbrains.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -40,7 +39,7 @@ public final class CompiledAccessKeyAttribute
                 this.errors = Collections.singletonList(new AccessKeyAttributeError(content));
             }
         } else {
-            this.errors = new ArrayList<>(errors);
+            this.errors = Collections.unmodifiableList(errors);
         }
 
         warnings = Collections.emptyList();
@@ -58,13 +57,7 @@ public final class CompiledAccessKeyAttribute
     @UnmodifiableView
     @Contract(pure = true)
     public List<AccessKeyAttributeError> errors() {
-        return Collections.unmodifiableList(errors);
-    }
-
-    @Override
-    @Contract(pure = true)
-    public boolean hasErrors() {
-        return !errors.isEmpty();
+        return errors;
     }
 
     @NotNull
@@ -75,11 +68,6 @@ public final class CompiledAccessKeyAttribute
         return warnings;
     }
 
-    @Override
-    @Contract(pure = true)
-    public boolean hasWarnings() {
-        return !warnings.isEmpty();
-    }
 
     @Contract(pure = true)
     public boolean hasSuccessFullyCompiled() {return success;}
