@@ -7,12 +7,10 @@ import nl.tijsbeek.api.results.html.compiled.linter.warnings.HTMLAttributeWarnin
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.UnmodifiableView;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
 
 public final class CompiledAltAttribute
@@ -21,16 +19,16 @@ public final class CompiledAltAttribute
     private final boolean success;
     private final @NotNull String content;
 
-    private final List<HTMLAttributeError<AltAttribute>> errors;
-    private final List<HTMLAttributeWarning<AltAttribute>> warnings;
+    private final @Nullable HTMLAttributeError<AltAttribute> errors;
+    private final @Nullable HTMLAttributeWarning<AltAttribute> warnings;
 
     public CompiledAltAttribute(final boolean success,
                                 @NotNull final String content) {
         this.success = success;
         this.content = content;
 
-        errors = Collections.emptyList();
-        warnings = Collections.emptyList();
+        errors = null;
+        warnings = null;
     }
 
     @Override
@@ -39,28 +37,30 @@ public final class CompiledAltAttribute
         return new AltAttribute();
     }
 
-    @NotNull
+    @Nullable
     @Override
-    @UnmodifiableView
     @Contract(pure = true)
-    public List<HTMLAttributeError<AltAttribute>> errors() {
+    public HTMLAttributeError<AltAttribute> errors() {
         return errors;
     }
 
-    @NotNull
+    @Nullable
     @Override
-    @UnmodifiableView
     @Contract(pure = true)
-    public List<HTMLAttributeWarning<AltAttribute>> warnings() {
+    public HTMLAttributeWarning<AltAttribute> warnings() {
         return warnings;
     }
 
 
     @Contract(pure = true)
-    public boolean hasSuccessFullyCompiled() {return success;}
+    public boolean hasSuccessFullyCompiled() {
+        return success;
+    }
 
     @Contract(pure = true)
-    public @NotNull String contentAsString() {return content;}
+    public @NotNull String contentAsString() {
+        return content;
+    }
 
     @Override
     @Contract(value = "null -> false", pure = true)

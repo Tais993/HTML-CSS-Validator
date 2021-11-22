@@ -1,25 +1,36 @@
 package nl.tijsbeek.api.results.html.compiled;
 
-import nl.tijsbeek.api.results.html.compiled.linter.errors.HTMLError;
-import nl.tijsbeek.api.results.html.compiled.linter.warnings.HTMLWarning;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.UnmodifiableView;
+import java.util.Collection;
 
-import java.util.List;
-
-public interface CompiledHTML<E extends HTMLError, W extends HTMLWarning> {
+public interface CompiledHTML<E, W> {
 
     boolean hasSuccessFullyCompiled();
 
-    @NotNull
-    @UnmodifiableView
-    List<E> errors();
+    E errors();
 
-    boolean hasErrors();
+    default boolean hasErrors() {
+        Object errors = errors();
 
-    @NotNull
-    @UnmodifiableView
-    List<W> warnings();
+        if (errors == null) {
+            return false;
+        } else if (errors instanceof Collection<?> errorsCollection) {
+            return !errorsCollection.isEmpty();
+        }
 
-    boolean hasWarnings();
+        return true;
+    }
+
+    W warnings();
+
+    default boolean hasWarnings() {
+        Object warnings = warnings();
+
+        if (warnings == null) {
+            return false;
+        } else if (warnings instanceof Collection<?> warningsCollection) {
+            return !warningsCollection.isEmpty();
+        }
+
+        return true;
+    }
 }

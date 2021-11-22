@@ -41,7 +41,7 @@ class AcceptAttributeTest {
         CompiledAcceptAttribute invalidAcceptAttribute = acceptAttribute.compile(
                 listToString(invalidArguments, ","));
 
-        Assertions.assertFalse(invalidAcceptAttribute.hasSuccessFullyCompiled(), "invalid attributes found to be valid.");
+        Assertions.assertTrue(invalidAcceptAttribute.hasWarnings() || invalidAcceptAttribute.hasErrors(), "invalid attributes found to be valid.");
         Assertions.assertIterableEquals(invalidArguments, invalidAcceptAttribute.invalidTypes());
     }
 }

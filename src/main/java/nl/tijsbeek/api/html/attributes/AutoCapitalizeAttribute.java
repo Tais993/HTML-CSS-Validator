@@ -20,7 +20,7 @@ public class AutoCapitalizeAttribute implements HTMLAttribute<CompiledAutoCapita
 
     @Override
     public boolean requiresValue() {
-        return false;
+        return true;
     }
 
     @NotNull

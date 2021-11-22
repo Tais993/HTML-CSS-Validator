@@ -4,12 +4,13 @@ import nl.tijsbeek.api.html.attributes.AccessKeyAttribute;
 import nl.tijsbeek.api.results.html.compiled.CompiledHTMLAttribute;
 import nl.tijsbeek.api.results.html.compiled.linter.errors.attributes.AccessKeyAttributeError;
 import nl.tijsbeek.api.results.html.compiled.linter.warnings.HTMLAttributeWarning;
-import org.jetbrains.annotations.*;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
 
 public final class CompiledAccessKeyAttribute
@@ -18,31 +19,21 @@ public final class CompiledAccessKeyAttribute
     private static final Logger logger = LoggerFactory.getLogger(CompiledAccessKeyAttribute.class);
     private final boolean success;
     private final @NotNull String content;
-    private final List<AccessKeyAttributeError> errors;
-    private final List<HTMLAttributeWarning<AccessKeyAttribute>> warnings;
+    private final @Nullable AccessKeyAttributeError errors;
+    private final @Nullable HTMLAttributeWarning<AccessKeyAttribute> warnings;
 
 
     public CompiledAccessKeyAttribute(final boolean success, @NotNull final String content) {
-        this(success, content, null);
-    }
-
-    public CompiledAccessKeyAttribute(final boolean success,
-                                      @NotNull final String content,
-                                      final List<AccessKeyAttributeError> errors) {
         this.success = success;
         this.content = content;
 
-        if (errors == null) {
-            if (success) {
-                this.errors = Collections.emptyList();
-            } else {
-                this.errors = Collections.singletonList(new AccessKeyAttributeError(content));
-            }
+        if (success) {
+            errors = null;
         } else {
-            this.errors = Collections.unmodifiableList(errors);
+            errors = new AccessKeyAttributeError(content);
         }
 
-        warnings = Collections.emptyList();
+        warnings = null;
     }
 
     @NotNull
@@ -52,19 +43,17 @@ public final class CompiledAccessKeyAttribute
         return new AccessKeyAttribute();
     }
 
-    @NotNull
+    @Nullable
     @Override
-    @UnmodifiableView
     @Contract(pure = true)
-    public List<AccessKeyAttributeError> errors() {
+    public AccessKeyAttributeError errors() {
         return errors;
     }
 
-    @NotNull
+    @Nullable
     @Override
-    @Unmodifiable
     @Contract(pure = true)
-    public List<HTMLAttributeWarning<AccessKeyAttribute>> warnings() {
+    public HTMLAttributeWarning<AccessKeyAttribute> warnings() {
         return warnings;
     }
 

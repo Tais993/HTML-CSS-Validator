@@ -23,10 +23,10 @@ public final record CompiledAcceptAttribute(
         @NotNull @UnmodifiableView List<String> permittedFileExtensions,
         @NotNull @UnmodifiableView List<String> invalidTypes,
         @NotNull @UnmodifiableView List<AcceptAttributeError> errors,
-        @NotNull @UnmodifiableView List<HTMLAttributeWarning<AcceptAttribute>> warnings
+        @NotNull @UnmodifiableView HTMLAttributeWarning<AcceptAttribute> warnings
 
 )
-        implements CompiledHTMLAttribute<AcceptAttribute, AcceptAttributeError,
+        implements CompiledHTMLAttribute<AcceptAttribute, List<AcceptAttributeError>,
         HTMLAttributeWarning<AcceptAttribute>> {
 
     private static final Logger logger = LoggerFactory.getLogger(CompiledAcceptAttribute.class);
@@ -38,7 +38,7 @@ public final record CompiledAcceptAttribute(
                                    @NotNull final List<String> permittedFileExtensions,
                                    @NotNull final List<String> invalidTypes) {
         this(true, content, permittedTypes, permittedMimeTypes,
-                permittedFileExtensions, invalidTypes, generateErrors(invalidTypes), Collections.emptyList());
+                permittedFileExtensions, invalidTypes, generateErrors(invalidTypes), null);
     }
 
     public CompiledAcceptAttribute(final boolean success,
@@ -48,7 +48,7 @@ public final record CompiledAcceptAttribute(
                                    @NotNull final List<String> permittedFileExtensions,
                                    @NotNull final List<String> invalidTypes,
                                    @NotNull List<AcceptAttributeError> errors,
-                                   @NotNull List<HTMLAttributeWarning<AcceptAttribute>> warnings) {
+                                   HTMLAttributeWarning<AcceptAttribute> warnings) {
 
         Objects.requireNonNull(content, "The given content cannot be null");
         Objects.requireNonNull(permittedTypes, "The given permittedTypes cannot be null");
@@ -56,6 +56,7 @@ public final record CompiledAcceptAttribute(
         Objects.requireNonNull(permittedFileExtensions, "The given permittedFileExtensions cannot be null");
         Objects.requireNonNull(invalidTypes, "The given invalidTypes cannot be null");
 
+        Objects.requireNonNull(errors, "The given errors cannot be null");
 
         this.success = success;
 
@@ -66,7 +67,7 @@ public final record CompiledAcceptAttribute(
         this.permittedFileExtensions = Collections.unmodifiableList(permittedFileExtensions);
         this.invalidTypes = Collections.unmodifiableList(invalidTypes);
 
-        this.warnings = Collections.unmodifiableList(warnings);
+        this.warnings = warnings;
         this.errors = Collections.unmodifiableList(errors);
     }
 

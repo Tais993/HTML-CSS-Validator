@@ -20,8 +20,7 @@ class AutoCapitalizeAttributeTest {
     private static final List<String> invalidArguments =
             Arrays.asList(
                     "test",
-                    "okay",
-                    null
+                    "okay"
             );
 
     @Test

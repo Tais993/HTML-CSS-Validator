@@ -9,8 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.URL;
-import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
 
 public final class CompiledActionAttribute
@@ -21,20 +19,20 @@ public final class CompiledActionAttribute
     private final String content;
     private final URL url;
 
-    private final List<HTMLAttributeError<ActionAttribute>> errors;
-    private final List<ActionAttributeWarning> warnings;
+    private final @Nullable HTMLAttributeError<ActionAttribute> errors;
+    private final @Nullable ActionAttributeWarning warnings;
 
     public CompiledActionAttribute(final boolean success, @NotNull final String content, @Nullable URL url) {
         this.success = success;
         this.url = url;
         this.content = Objects.requireNonNull(content, "The given content cannot be null");
 
-        errors = Collections.emptyList();
+        errors = null;
 
         if (success) {
-            warnings = Collections.emptyList();
+            warnings = null;
         } else {
-            warnings = Collections.singletonList(new ActionAttributeWarning(content));
+            warnings = new ActionAttributeWarning(content);
         }
     }
 
@@ -47,19 +45,19 @@ public final class CompiledActionAttribute
     }
 
 
-    @NotNull
+    @Nullable
     @Override
     @UnmodifiableView
     @Contract(pure = true)
-    public List<HTMLAttributeError<ActionAttribute>> errors() {
+    public HTMLAttributeError<ActionAttribute> errors() {
         return errors;
     }
 
-    @NotNull
+    @Nullable
     @Override
     @UnmodifiableView
     @Contract(pure = true)
-    public List<ActionAttributeWarning> warnings() {
+    public ActionAttributeWarning warnings() {
         return warnings;
     }
 
@@ -74,7 +72,6 @@ public final class CompiledActionAttribute
     @Override
     @Contract(pure = true)
     public String contentAsString() {
-        throwIfNoSuccess();
         return content;
     }
 

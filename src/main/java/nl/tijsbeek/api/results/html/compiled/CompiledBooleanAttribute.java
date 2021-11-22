@@ -3,41 +3,37 @@ package nl.tijsbeek.api.results.html.compiled;
 import nl.tijsbeek.api.html.HTMLAttribute;
 import nl.tijsbeek.api.results.html.compiled.linter.errors.HTMLAttributeError;
 import nl.tijsbeek.api.results.html.compiled.linter.warnings.attributes.BooleanAttributeWarning;
-import org.jetbrains.annotations.*;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Collections;
-import java.util.List;
 
 public abstract class CompiledBooleanAttribute<A extends HTMLAttribute<?>>
         implements CompiledHTMLAttribute<A, HTMLAttributeError<A>, BooleanAttributeWarning<A>> {
     private static final Logger logger = LoggerFactory.getLogger(CompiledBooleanAttribute.class);
 
-    private final List<HTMLAttributeError<A>> errors;
-    private final List<BooleanAttributeWarning<A>> warnings;
+    private final @Nullable BooleanAttributeWarning<A> warnings;
 
     @Contract(pure = true)
     protected CompiledBooleanAttribute(final A attribute, final boolean success, final @Nullable String value) {
-        errors = Collections.emptyList();
-
         if (success) {
-            warnings = Collections.emptyList();
+            warnings = null;
         } else {
-            warnings = Collections.singletonList(new BooleanAttributeWarning<>(attribute, value));
+            warnings = new BooleanAttributeWarning<>(attribute, value);
         }
     }
 
-    @NotNull
-    @UnmodifiableView
-    public List<HTMLAttributeError<A>> errors() {
-        return errors;
+    @Nullable
+    @Override
+    public HTMLAttributeError<A> errors() {
+        return null;
     }
 
-    @NotNull
+    @Nullable
     @Override
-    @UnmodifiableView
-    public List<BooleanAttributeWarning<A>> warnings() {
+    public BooleanAttributeWarning<A> warnings() {
         return warnings;
     }
 
@@ -46,8 +42,7 @@ public abstract class CompiledBooleanAttribute<A extends HTMLAttribute<?>>
     @Override
     public String toString() {
         return "CompiledBooleanAttribute{" +
-                "errors=" + errors +
-                ", warnings=" + warnings +
+                "warnings=" + warnings +
                 '}';
     }
 }
