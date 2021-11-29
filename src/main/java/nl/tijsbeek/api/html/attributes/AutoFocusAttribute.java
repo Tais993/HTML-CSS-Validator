@@ -23,7 +23,7 @@ public class AutoFocusAttribute implements HTMLAttribute<CompiledAutoFocusAttrib
     }
 
     @Override
-    public @NotNull CompiledAutoFocusAttribute compile(@Nullable String content) {
+    public @NotNull CompiledAutoFocusAttribute compile(@Nullable final String content) {
 
         if (content == null) {
             return new CompiledAutoFocusAttribute(true, null);

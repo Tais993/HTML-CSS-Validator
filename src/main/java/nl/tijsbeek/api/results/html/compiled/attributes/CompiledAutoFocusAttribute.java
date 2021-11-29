@@ -11,7 +11,7 @@ public class CompiledAutoFocusAttribute extends CompiledBooleanAttribute<AutoFoc
     private final boolean shouldAutoFocus;
     private final String content;
 
-    public CompiledAutoFocusAttribute(boolean shouldAutoFocus, String content) {
+    public CompiledAutoFocusAttribute(final boolean shouldAutoFocus, final String content) {
         super(AUTO_FOCUS_ATTRIBUTE, shouldAutoFocus, content);
         this.shouldAutoFocus = shouldAutoFocus;
         this.content = content;

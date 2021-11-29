@@ -27,7 +27,7 @@ public class CompiledAutoCompleteAttribute implements CompiledHTMLAttribute<Auto
     private final List<InvalidEnumValueAttributeError<AutoCompleteAttribute>> errors;
     private final List<HTMLAttributeWarning<AutoCompleteAttribute>> warnings;
 
-    public CompiledAutoCompleteAttribute(@NotNull @NonNls String content) {
+    public CompiledAutoCompleteAttribute(@NotNull @NonNls final String content) {
         this.success = true;
         this.content = Objects.requireNonNull(content, "The given content cannot be null");
 

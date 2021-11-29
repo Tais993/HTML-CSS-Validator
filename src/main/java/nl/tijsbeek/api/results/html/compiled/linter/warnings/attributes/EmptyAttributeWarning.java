@@ -10,7 +10,7 @@ public class EmptyAttributeWarning<A extends HTMLAttribute<?>> extends HTMLAttri
     private static final Logger logger = LoggerFactory.getLogger(EmptyAttributeWarning.class);
     private static final String ERROR_MESSAGE = "The attribute is empty, this may be confusing to people that don't know the default value.";
 
-    public EmptyAttributeWarning(@NotNull A attribute) {
+    public EmptyAttributeWarning(@NotNull final A attribute) {
         super(attribute, "", ERROR_MESSAGE);
     }
 }

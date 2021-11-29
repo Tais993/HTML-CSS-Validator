@@ -18,7 +18,7 @@ public enum AutoCapitalize {
 
     @Nullable
     @Contract(pure = true)
-    public static AutoCapitalize fromHTMLName(@Nullable String name) {
+    public static AutoCapitalize fromHTMLName(@Nullable final String name) {
         if (name == null) {
             return SENTENCES;
         }
@@ -35,7 +35,7 @@ public enum AutoCapitalize {
         };
     }
 
-    public static boolean isValidHTMLName(@NotNull String name) {
+    public static boolean isValidHTMLName(@NotNull final String name) {
         Objects.requireNonNull(name, "The given name cannot be null");
 
         return switch (name.toUpperCase(Locale.ROOT)) {

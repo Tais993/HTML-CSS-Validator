@@ -19,8 +19,8 @@ public class InvalidEnumValueAttributeError<A extends HTMLAttribute<?>> extends 
     private final List<? extends Enum<?>> enumValues;
     private final String validValuesAsString;
 
-    public InvalidEnumValueAttributeError(@NotNull A attribute, @NotNull Class<? extends Enum<?>> enumClass,
-                                          @Nullable String content) {
+    public InvalidEnumValueAttributeError(@NotNull final A attribute, @NotNull final Class<? extends Enum<?>> enumClass,
+                                          @Nullable final String content) {
         super(attribute, content, "Invalid enum value, " + content);
 
         this.enumClass = enumClass;
@@ -30,7 +30,7 @@ public class InvalidEnumValueAttributeError<A extends HTMLAttribute<?>> extends 
 
 
     @NotNull
-    private static String enumArrayToString(@NotNull List<? extends Enum<?>> enumConstants) {
+    private static String enumArrayToString(@NotNull final List<? extends Enum<?>> enumConstants) {
         Objects.requireNonNull(enumConstants, "The given enumValues cannot be null");
 
         StringBuilder stringBuilder = new StringBuilder(100);

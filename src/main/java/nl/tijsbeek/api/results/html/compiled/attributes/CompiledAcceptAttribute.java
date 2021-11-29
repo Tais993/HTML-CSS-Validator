@@ -47,8 +47,8 @@ public final record CompiledAcceptAttribute(
                                    @NotNull final List<String> permittedMimeTypes,
                                    @NotNull final List<String> permittedFileExtensions,
                                    @NotNull final List<String> invalidTypes,
-                                   @NotNull List<AcceptAttributeError> errors,
-                                   HTMLAttributeWarning<AcceptAttribute> warnings) {
+                                   @NotNull final List<AcceptAttributeError> errors,
+                                   final HTMLAttributeWarning<AcceptAttribute> warnings) {
 
         Objects.requireNonNull(content, "The given content cannot be null");
         Objects.requireNonNull(permittedTypes, "The given permittedTypes cannot be null");
@@ -73,7 +73,7 @@ public final record CompiledAcceptAttribute(
 
     @NotNull
     @UnmodifiableView
-    private static List<AcceptAttributeError> generateErrors(@NotNull Collection<String> invalidTypes) {
+    private static List<AcceptAttributeError> generateErrors(@NotNull final Collection<String> invalidTypes) {
         return invalidTypes.stream()
                 .map(AcceptAttributeError::new)
                 .toList();

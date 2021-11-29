@@ -22,7 +22,7 @@ public final class CompiledActionAttribute
     private final @Nullable HTMLAttributeError<ActionAttribute> errors;
     private final @Nullable ActionAttributeWarning warnings;
 
-    public CompiledActionAttribute(final boolean success, @NotNull final String content, @Nullable URL url) {
+    public CompiledActionAttribute(final boolean success, @NotNull final String content, @Nullable final URL url) {
         this.success = success;
         this.url = url;
         this.content = Objects.requireNonNull(content, "The given content cannot be null");

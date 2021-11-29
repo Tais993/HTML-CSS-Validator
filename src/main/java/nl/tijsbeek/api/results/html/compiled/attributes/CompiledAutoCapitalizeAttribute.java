@@ -25,7 +25,7 @@ public class CompiledAutoCapitalizeAttribute implements CompiledHTMLAttribute<Au
     private final @Nullable EmptyAttributeWarning<AutoCapitalizeAttribute> warnings;
 
     @Contract(pure = true)
-    public CompiledAutoCapitalizeAttribute(@Nullable AutoCapitalize autoCapitalize, @NotNull String content) {
+    public CompiledAutoCapitalizeAttribute(@Nullable final AutoCapitalize autoCapitalize, @NotNull final String content) {
         this.autoCapitalize = autoCapitalize;
         this.content = content;
         this.success = true;

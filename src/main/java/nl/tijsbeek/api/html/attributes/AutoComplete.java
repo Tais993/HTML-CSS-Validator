@@ -66,7 +66,7 @@ public enum AutoComplete {
     private final String htmlValue;
 
     @NotNull
-    public static AutoComplete getByHTML(@NotNull @NonNls String htmlValue) {
+    public static AutoComplete getByHTML(@NotNull @NonNls final String htmlValue) {
         Objects.requireNonNull(htmlValue, "The given parameterContent cannot be null");
 
         @NonNls String content = htmlValue.toLowerCase(Locale.ROOT).trim();
@@ -83,7 +83,7 @@ public enum AutoComplete {
     }
 
     @Contract(pure = true)
-    AutoComplete(@NotNull String htmlValue) {
+    AutoComplete(@NotNull final String htmlValue) {
         this.htmlValue = Objects.requireNonNull(htmlValue, "The given htmlValue cannot be null");
     }
 

@@ -25,7 +25,7 @@ public class AutoCapitalizeAttribute implements HTMLAttribute<CompiledAutoCapita
 
     @NotNull
     @Override
-    public CompiledAutoCapitalizeAttribute compile(@NotNull String content) {
+    public CompiledAutoCapitalizeAttribute compile(@NotNull final String content) {
         Objects.requireNonNull(content, "The given content cannot be null");
 
         AutoCapitalize autoCapitalize = AutoCapitalize.fromHTMLName(content);

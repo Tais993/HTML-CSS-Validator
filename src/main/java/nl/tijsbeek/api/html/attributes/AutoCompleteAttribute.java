@@ -23,7 +23,7 @@ public class AutoCompleteAttribute implements HTMLAttribute<CompiledAutoComplete
     }
 
     @Override
-    public @NotNull CompiledAutoCompleteAttribute compile(@NotNull @NonNls String content) {
+    public @NotNull CompiledAutoCompleteAttribute compile(@NotNull @NonNls final String content) {
         return new CompiledAutoCompleteAttribute(content);
     }
 }
