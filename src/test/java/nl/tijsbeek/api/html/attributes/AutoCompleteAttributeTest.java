@@ -31,7 +31,7 @@ class AutoCompleteAttributeTest {
             );
 
     @Test
-    public void testAutoCapitalizeAttribute() {
+    public void testAutoCompleteAttribute() {
         AutoCompleteAttribute autoCompleteAttribute = new AutoCompleteAttribute();
 
         validArguments.forEach((@NonNls String validArgument) -> {
