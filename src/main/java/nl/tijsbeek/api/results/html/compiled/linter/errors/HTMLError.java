@@ -30,10 +30,10 @@ public class HTMLError {
 
     @NonNls
     @Override
-    @Contract(pure = true)
     public String toString() {
-        return "ErrorHTML{" +
-                "message='" + errorMessage + '\'' +
+        return "HTMLError{" +
+                "value='" + value + '\'' +
+                ", errorMessage='" + errorMessage + '\'' +
                 '}';
     }
 }
