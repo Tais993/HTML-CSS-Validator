@@ -1,8 +1,10 @@
 package nl.tijsbeek.api.html.attributes;
 
 import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public enum AutoComplete {
@@ -62,6 +64,23 @@ public enum AutoComplete {
     PHOTO("photo");
 
     private final String htmlValue;
+
+    @NotNull
+    public static AutoComplete getByHTML(@NotNull @NonNls String htmlValue) {
+        Objects.requireNonNull(htmlValue, "The given parameterContent cannot be null");
+
+        @NonNls String content = htmlValue.toLowerCase(Locale.ROOT).trim();
+
+        AutoComplete[] autoCompleteValues = AutoComplete.values();
+        for (final AutoComplete autoCompleteValue : autoCompleteValues) {
+
+            if (autoCompleteValue.getHtmlValue().equals(content)) {
+                return autoCompleteValue;
+            }
+        }
+
+        throw new IllegalArgumentException("Invalid HTML value");
+    }
 
     @Contract(pure = true)
     AutoComplete(@NotNull String htmlValue) {
