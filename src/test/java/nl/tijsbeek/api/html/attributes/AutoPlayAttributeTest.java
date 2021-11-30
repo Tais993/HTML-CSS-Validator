@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AutoPlayAttributeTest {
@@ -33,14 +34,14 @@ class AutoPlayAttributeTest {
         validArguments.forEach((@NonNls String validArgument) -> {
             CompiledAutoPlayAttribute validCompile = autoFocusAttribute.compile(validArgument);
 
-            assertTrue(validCompile.hasSuccessFullyCompiled(),
+            assertFalse(validCompile.hasWarnings() || validCompile.hasErrors(),
                     () -> "Valid argument is seen as invalid, " + validArgument);
         });
 
         invalidArguments.forEach((@NonNls String invalidArgument) -> {
             CompiledAutoPlayAttribute invalidCompile = autoFocusAttribute.compile(invalidArgument);
 
-            assertTrue(invalidCompile.hasWarnings(),
+            assertTrue(invalidCompile.hasWarnings() || invalidCompile.hasWarnings(),
                     () -> "Invalid argument is seen as valid, " + invalidArgument);
         });
     }

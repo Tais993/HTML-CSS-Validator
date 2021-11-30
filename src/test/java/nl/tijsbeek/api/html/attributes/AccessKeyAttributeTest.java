@@ -35,14 +35,14 @@ class AccessKeyAttributeTest {
         validArguments.forEach((@NonNls String validArgument) -> {
             CompiledAccessKeyAttribute validCompile = accessKeyAttribute.compile(validArgument);
 
-            assertTrue(validCompile.hasSuccessFullyCompiled(),
+            assertFalse(validCompile.hasErrors() || validCompile.hasWarnings(),
                     () -> "Valid argument is seen as invalid, " + validArgument);
         });
 
         invalidArguments.forEach((@NonNls String invalidArgument) -> {
             CompiledAccessKeyAttribute invalidCompile = accessKeyAttribute.compile(invalidArgument);
 
-            assertFalse(invalidCompile.hasSuccessFullyCompiled(),
+            assertTrue(invalidCompile.hasErrors() || invalidCompile.hasWarnings(),
                     () -> "Invalid argument is seen as valid, " + invalidArgument);
         });
     }

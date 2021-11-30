@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AutoCapitalizeAttributeTest {
@@ -30,7 +31,7 @@ class AutoCapitalizeAttributeTest {
         validArguments.forEach((@NonNls String validArgument) -> {
             CompiledAutoCapitalizeAttribute validCompile = autoCapitalizeAttribute.compile(validArgument);
 
-            assertTrue(validCompile.hasSuccessFullyCompiled(),
+            assertFalse(validCompile.hasWarnings() || validCompile.hasErrors(),
                     () -> "Valid argument is seen as invalid, " + validArgument);
         });
 

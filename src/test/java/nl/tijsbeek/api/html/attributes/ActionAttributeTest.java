@@ -34,14 +34,14 @@ class ActionAttributeTest {
         validArguments.forEach((@NonNls String validArgument) -> {
             CompiledActionAttribute validCompile = actionAttribute.compile(validArgument);
 
-            assertTrue(validCompile.hasSuccessFullyCompiled(),
+            assertFalse(validCompile.hasErrors() || validCompile.hasWarnings(),
                     () -> "Valid argument is seen as invalid, " + validArgument);
         });
 
         invalidArguments.forEach((@NonNls String invalidArgument) -> {
             CompiledActionAttribute invalidCompile = actionAttribute.compile(invalidArgument);
 
-            assertFalse(invalidCompile.hasSuccessFullyCompiled(),
+            assertTrue(invalidCompile.hasWarnings() || invalidCompile.hasErrors(),
                     () -> "Invalid argument is seen as valid, " + invalidArgument);
         });
     }

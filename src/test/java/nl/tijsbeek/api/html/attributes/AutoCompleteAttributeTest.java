@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AutoCompleteAttributeTest {
@@ -37,7 +38,7 @@ class AutoCompleteAttributeTest {
         validArguments.forEach((@NonNls String validArgument) -> {
             CompiledAutoCompleteAttribute validCompile = autoCompleteAttribute.compile(validArgument);
 
-            assertTrue(validCompile.hasSuccessFullyCompiled(),
+            assertFalse(validCompile.hasWarnings() || validCompile.hasErrors(),
                     () -> "Valid argument is seen as invalid, " + validArgument);
         });
 

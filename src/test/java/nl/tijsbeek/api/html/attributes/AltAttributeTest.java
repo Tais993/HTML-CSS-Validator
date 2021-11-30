@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class AltAttributeTest {
     private static final Logger logger = LoggerFactory.getLogger(AltAttributeTest.class);
@@ -26,7 +26,7 @@ class AltAttributeTest {
         validArguments.forEach((@NonNls String validArgument) -> {
             CompiledAltAttribute validCompile = altAttribute.compile(validArgument);
 
-            assertTrue(validCompile.hasSuccessFullyCompiled(),
+            assertFalse(validCompile.hasWarnings() || validCompile.hasErrors(),
                     () -> "Valid argument is seen as invalid, " + validArgument);
         });
     }

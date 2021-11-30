@@ -35,7 +35,7 @@ class CaptureAttributeTest {
             //noinspection LanguageMismatch
             CompiledCaptureAttribute validCompile = captureAttribute.compile(validArgument);
 
-            assertFalse(validCompile.hasErrors() && validCompile.hasWarnings(),
+            assertFalse(validCompile.hasErrors() || validCompile.hasWarnings(),
                     () -> "Valid argument is seen as invalid, " + validArgument);
         });
 

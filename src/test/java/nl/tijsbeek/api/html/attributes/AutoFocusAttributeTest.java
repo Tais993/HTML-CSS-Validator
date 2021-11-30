@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AutoFocusAttributeTest {
@@ -33,7 +34,7 @@ class AutoFocusAttributeTest {
         validArguments.forEach((@NonNls String validArgument) -> {
             CompiledAutoFocusAttribute validCompile = autoFocusAttribute.compile(validArgument);
 
-            assertTrue(validCompile.hasSuccessFullyCompiled(),
+            assertFalse(validCompile.hasWarnings() || validCompile.hasErrors(),
                     () -> "Valid argument is seen as invalid, " + validArgument);
         });
 
