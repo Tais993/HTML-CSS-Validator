@@ -4,21 +4,16 @@ import nl.tijsbeek.api.html.attributes.CheckedAttribute;
 import nl.tijsbeek.api.results.html.compiled.CompiledBooleanAttribute;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CompiledCheckedAttribute extends CompiledBooleanAttribute<CheckedAttribute> {
+    private static final Logger logger = LoggerFactory.getLogger(CompiledCheckedAttribute.class);
+
     public static final CheckedAttribute CHECKED_ATTRIBUTE_INSTANCE = new CheckedAttribute();
 
-    private final String content;
-
-    public CompiledCheckedAttribute(final boolean success, @Nullable final String value) {
-        super(CHECKED_ATTRIBUTE_INSTANCE, success, value);
-
-        this.content = value;
-    }
-
-    @Override
-    public boolean hasSuccessFullyCompiled() {
-        return true;
+    public CompiledCheckedAttribute(@Nullable final String content) {
+        super(CHECKED_ATTRIBUTE_INSTANCE, content);
     }
 
     @Override
@@ -26,8 +21,7 @@ public class CompiledCheckedAttribute extends CompiledBooleanAttribute<CheckedAt
         return CHECKED_ATTRIBUTE_INSTANCE;
     }
 
-    @Override
-    public @Nullable String contentAsString() {
-        return null;
+    public boolean isCheckedOnStart() {
+        return isTrue();
     }
 }

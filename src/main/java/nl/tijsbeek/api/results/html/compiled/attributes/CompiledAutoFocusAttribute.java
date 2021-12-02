@@ -4,22 +4,19 @@ import nl.tijsbeek.api.html.attributes.AutoFocusAttribute;
 import nl.tijsbeek.api.results.html.compiled.CompiledBooleanAttribute;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CompiledAutoFocusAttribute extends CompiledBooleanAttribute<AutoFocusAttribute> {
-    private final static AutoFocusAttribute AUTO_FOCUS_ATTRIBUTE = new AutoFocusAttribute();
+    private static final Logger logger = LoggerFactory.getLogger(CompiledAutoFocusAttribute.class);
 
-    private final boolean shouldAutoFocus;
+    private static final AutoFocusAttribute AUTO_FOCUS_ATTRIBUTE = new AutoFocusAttribute();
+
     private final String content;
 
-    public CompiledAutoFocusAttribute(final boolean shouldAutoFocus, final String content) {
-        super(AUTO_FOCUS_ATTRIBUTE, shouldAutoFocus, content);
-        this.shouldAutoFocus = shouldAutoFocus;
+    public CompiledAutoFocusAttribute(@Nullable final String content) {
+        super(AUTO_FOCUS_ATTRIBUTE, content);
         this.content = content;
-    }
-
-    @Override
-    public boolean hasSuccessFullyCompiled() {
-        return true;
     }
 
     @Override
@@ -27,12 +24,7 @@ public class CompiledAutoFocusAttribute extends CompiledBooleanAttribute<AutoFoc
         return AUTO_FOCUS_ATTRIBUTE;
     }
 
-    @Override
-    public @Nullable String contentAsString() {
-        return content;
-    }
-
     public boolean shouldAutoFocus() {
-        return shouldAutoFocus;
+        return isTrue();
     }
 }

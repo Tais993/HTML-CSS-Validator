@@ -13,19 +13,12 @@ public class CompiledAsyncAttribute extends CompiledBooleanAttribute<AsyncAttrib
 
     private static final AsyncAttribute ASYNC_ATTRIBUTE_INSTANCE = new AsyncAttribute();
 
-    private final boolean isAsync;
     private final String content;
 
-    public CompiledAsyncAttribute(final boolean isAsync, @Nullable final String content) {
-        super(ASYNC_ATTRIBUTE_INSTANCE, isAsync, content);
+    public CompiledAsyncAttribute(@Nullable final String content) {
+        super(ASYNC_ATTRIBUTE_INSTANCE, content);
 
-        this.isAsync = isAsync;
         this.content = content;
-    }
-
-    @Override
-    public boolean hasSuccessFullyCompiled() {
-        return true;
     }
 
     @Override
@@ -34,7 +27,7 @@ public class CompiledAsyncAttribute extends CompiledBooleanAttribute<AsyncAttrib
     }
 
     public boolean isAsync() {
-        return isAsync;
+        return isTrue();
     }
 
     @Nullable
@@ -43,13 +36,13 @@ public class CompiledAsyncAttribute extends CompiledBooleanAttribute<AsyncAttrib
         return content;
     }
 
+
     @NonNls
     @NotNull
     @Override
     public String toString() {
         return "CompiledAsyncAttribute{" +
-                "isAsync=" + isAsync +
-                ", content='" + content + '\'' +
+                "content='" + content + '\'' +
                 '}';
     }
 }

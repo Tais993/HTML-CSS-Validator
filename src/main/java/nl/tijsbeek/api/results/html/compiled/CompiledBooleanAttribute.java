@@ -18,14 +18,19 @@ public abstract class CompiledBooleanAttribute<A extends HTMLAttribute<?>>
     private final @Nullable BooleanAttributeWarning<A> warnings;
 
     @Contract(pure = true)
-    protected CompiledBooleanAttribute(final A attribute, final boolean success, final @Nullable String value) {
+    protected CompiledBooleanAttribute(final A attribute, final @Nullable String value) {
         this.value = value;
 
-        if (success) {
+        if (value == null || value.isEmpty()) {
             warnings = null;
         } else {
             warnings = new BooleanAttributeWarning<>(attribute, value);
         }
+    }
+
+    @Override
+    public boolean hasSuccessFullyCompiled() {
+        return true;
     }
 
     @Nullable
@@ -44,6 +49,10 @@ public abstract class CompiledBooleanAttribute<A extends HTMLAttribute<?>>
     @Override
     public String contentAsString() {
         return value;
+    }
+
+    public boolean isTrue() {
+        return true;
     }
 
     @NonNls

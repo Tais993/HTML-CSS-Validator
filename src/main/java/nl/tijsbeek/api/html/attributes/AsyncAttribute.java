@@ -24,13 +24,6 @@ public class AsyncAttribute implements HTMLAttribute<CompiledAsyncAttribute> {
 
     @Override
     public @NotNull CompiledAsyncAttribute compile(@Nullable final String content) {
-
-        if (content == null) {
-            return new CompiledAsyncAttribute(true, null);
-        }
-
-        boolean isAsync = content.isEmpty();
-
-        return new CompiledAsyncAttribute(isAsync, content);
+        return new CompiledAsyncAttribute(content);
     }
 }

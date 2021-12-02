@@ -24,13 +24,6 @@ public class AutoPlayAttribute implements HTMLAttribute<CompiledAutoPlayAttribut
 
     @Override
     public @NotNull CompiledAutoPlayAttribute compile(@Nullable final String content) {
-
-        if (content == null) {
-            return new CompiledAutoPlayAttribute(true, null);
-        }
-
-        boolean isAutoPlay = content.isEmpty();
-
-        return new CompiledAutoPlayAttribute(isAutoPlay, content);
+        return new CompiledAutoPlayAttribute(content);
     }
 }

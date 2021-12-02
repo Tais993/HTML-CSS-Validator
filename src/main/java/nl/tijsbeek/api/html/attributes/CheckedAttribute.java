@@ -24,13 +24,6 @@ public class CheckedAttribute implements HTMLAttribute<CompiledCheckedAttribute>
 
     @Override
     public @NotNull CompiledCheckedAttribute compile(@Nullable final String content) {
-
-        if (content == null) {
-            return new CompiledCheckedAttribute(true, null);
-        }
-
-        boolean isChecked = content.isEmpty();
-
-        return new CompiledCheckedAttribute(isChecked, content);
+        return new CompiledCheckedAttribute(content);
     }
 }

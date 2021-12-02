@@ -24,13 +24,6 @@ public class AutoFocusAttribute implements HTMLAttribute<CompiledAutoFocusAttrib
 
     @Override
     public @NotNull CompiledAutoFocusAttribute compile(@Nullable final String content) {
-
-        if (content == null) {
-            return new CompiledAutoFocusAttribute(true, null);
-        }
-
-        boolean isAsync = content.isEmpty();
-
-        return new CompiledAutoFocusAttribute(isAsync, content);
+        return new CompiledAutoFocusAttribute(content);
     }
 }
