@@ -13,8 +13,8 @@ public interface CompiledHTML<E, W> {
 
         if (errors == null) {
             return false;
-        } else if (errors instanceof Collection<?> errorsCollection) {
-            return !errorsCollection.isEmpty();
+        } else if (errors instanceof Collection<?> collection) {
+            return !collection.isEmpty();
         }
 
         return true;
